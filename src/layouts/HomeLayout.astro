@@ -1,0 +1,25 @@
+---
+import AppHeader from "../components/AppHeader.astro";
+import "../styles/global.css";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+  </head>
+
+  <body class="p-16">
+    <div class="grid grid-cols-1 grid-rows-2 gap-2">
+      <div>
+        <AppHeader />
+      </div>
+
+      <div><slot /></div>
+    </div>
+  </body>
+</html>
