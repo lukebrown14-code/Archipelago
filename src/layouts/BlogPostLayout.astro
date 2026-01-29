@@ -5,12 +5,11 @@ const { title, description } = Astro.props;
 
 <HomeLayout>
   <article
-    class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-10 md:py-16 lg:py-20"
+    class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-10 md:py-16 lg:py-20 h-full"
   >
-    <!-- Header with better spacing and hierarchy -->
     <header class="mb-10 md:mb-14 lg:mb-16 text-center md:text-left">
       <h1
-        class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold tracking-tight text-gray-900 mb-4 leading-tight"
+        class="text-4xl sm:text-5xl lg:text-6xl text-gray-900 mb-4 leading-tight"
       >
         {title}
       </h1>
@@ -31,7 +30,6 @@ const { title, description } = Astro.props;
         </div> -->
     </header>
 
-    <!-- Main content with enhanced prose typography -->
     <div
       class="prose prose-lg prose-headings:font-serif prose-headings:tracking-tight prose-headings:text-gray-900
                   prose-p:text-gray-700 prose-p:leading-relaxed
