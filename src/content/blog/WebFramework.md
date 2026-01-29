@@ -5,7 +5,8 @@ date: 1900-01-01
 ---
 
 <div>
-    <h1 class="text-2xl">Building the Application</h1>
+    <h2 class="text-2xl">Building the Application</h2>
+    </br>
 </div>
 
 **Framework vs Library** A library, you import its code and call its function. Where a framework is
@@ -21,7 +22,11 @@ in charge of running the application, and executes your code when an appropriate
    directory
 6. Static assets (e.g. images, fonts, and audio) are copied to the output directory
 
-## Browser Side of an SPA
+<div>
+    </br>
+    <h2 class="text-2xl">Browser Side of an SPA </h2>
+    </br>
+</div>
 
 1. Loading the HTML file. the browser loads the HTML file and parses it. This HTML which is mostly
    empty, is used to load the JS and CSS bundles declared in the <script> and <link> tags.
@@ -34,7 +39,11 @@ in charge of running the application, and executes your code when an appropriate
    default behavior of reloading the page; instead, it renders the component that’s configured for
    the new route. The router is also in charge of changing the URL to reflect the new route.
 
-## SSR Application Flow
+<div>
+    </br>
+    <h2 class="text-2xl">SSR Application Flow</h2>
+    </br>
+</div>
 
 1. Loading an HTML page. Ther server sends back a complete page that is created each time someone
    requests it. To create the page, the server uses the application’s router to figure out which
