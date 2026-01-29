@@ -1,12 +1,15 @@
 ---
 title: "Web Framework"
 description: "How Web Framework Work"
+date: 1900-01-01
 ---
+
+<div>
+    <h1 class="text-2xl">Building the Application</h1>
+</div>
 
 **Framework vs Library** A library, you import its code and call its function. Where a framework is
 in charge of running the application, and executes your code when an appropriate trigger happens.
-
-## Building the Application
 
 1. Template compiler transforms the template for each component into JS. This code, executed in the
    broswer, creates the component's view.
