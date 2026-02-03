@@ -1,9 +1,6 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 @plugin "daisyui";
-
-.title-link {
-  @apply hover:decoration-orange-500 delay-300 transition  text-gray-900 hover:text-gray-800;
-}
 
 .blog-content {
   @apply prose prose-lg max-w-none text-black
