@@ -11,7 +11,9 @@
     prose-blockquote:border-l-4 prose-blockquote:border-green-700 prose-blockquote:pl-5 prose-blockquote:italic prose-blockquote:text-gray-600
     prose-img:rounded-xl prose-img:shadow-md prose-img:mx-auto
     prose-ul:list-disc prose-ol:list-decimal
+    prose-li:text-gray-700 prose-ol:marker:text-gray-700 prose-ul:marker:text-gray-700
     dark:text-gray-300
+    dark:prose-li:text-gray-300 dark:prose-ol:marker:text-gray-300 dark:prose-ul:marker:text-gray-300
     dark:prose-headings:text-gray-100
     dark:prose-p:text-gray-300
     dark:prose-a:text-green-400
