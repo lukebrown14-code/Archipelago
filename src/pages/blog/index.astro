@@ -2,20 +2,35 @@
 import { getCollection } from "astro:content";
 
 const posts = await getCollection("blog");
+const categories = [...new Set(posts.map((p) => p.data.category).filter(Boolean))].sort();
 ---
 
 <section class="py-8 md:py-12">
   <div class="mx-auto max-w-3xl">
+    {categories.length > 0 && (
+      <div class="flex flex-wrap gap-2 mb-6" id="category-filters">
+        <button data-filter="all" class="filter-btn active text-sm px-3 py-1 rounded-full border border-green-700 bg-green-700 text-white transition-colors">
+          All
+        </button>
+        {categories.map((cat) => (
+          <button data-filter={cat} class="filter-btn text-sm px-3 py-1 rounded-full border border-gray-300 text-gray-600 hover:border-green-700 hover:text-green-700 transition-colors">
+            {cat}
+          </button>
+        ))}
+      </div>
+    )}
+
     {
       posts.length === 0 ? (
         <p class="text-gray-500 py-12">No articles yet.</p>
       ) : (
-        <div class="divide-y divide-green-700/20">
+        <div class="divide-y divide-green-700/20" id="post-list">
           {
             posts.map((post) => (
               <a
                 href={`/blog/${post.slug}`}
                 class="group block py-5 first:pt-0"
+                data-category={post.data.category || ""}
               >
                 <h2 class="text-lg font-serif text-gray-900 group-hover:text-green-700 transition-colors">
                   {post.data.title}
@@ -49,3 +64,27 @@ const posts = await getCollection("blog");
     }
   </div>
 </section>
+
+<script>
+  const filters = document.getElementById("category-filters");
+  const posts = document.querySelectorAll<HTMLAnchorElement>("#post-list a[data-category]");
+
+  filters?.addEventListener("click", (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(".filter-btn");
+    if (!btn) return;
+
+    const selected = btn.dataset.filter;
+
+    filters.querySelectorAll(".filter-btn").forEach((b) => {
+      b.classList.remove("active", "bg-green-700", "text-white", "border-green-700");
+      b.classList.add("border-gray-300", "text-gray-600");
+    });
+    btn.classList.add("active", "bg-green-700", "text-white", "border-green-700");
+    btn.classList.remove("border-gray-300", "text-gray-600");
+
+    posts.forEach((post) => {
+      const show = selected === "all" || post.dataset.category === selected;
+      post.style.display = show ? "" : "none";
+    });
+  });
+</script>
