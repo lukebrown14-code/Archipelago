@@ -4,3 +4,13 @@
 .title-link {
   @apply hover:decoration-orange-500 delay-300 transition  text-gray-900 hover:text-gray-800;
 }
+
+.blog-content {
+  @apply prose prose-lg max-w-none text-black
+    prose-headings:font-serif prose-headings:tracking-tight prose-headings:text-gray-900
+    prose-p:text-gray-700 prose-p:leading-relaxed
+    prose-a:text-green-700 prose-a:no-underline hover:prose-a:underline
+    prose-blockquote:border-l-4 prose-blockquote:border-green-700 prose-blockquote:pl-5 prose-blockquote:italic prose-blockquote:text-gray-600
+    prose-img:rounded-xl prose-img:shadow-md prose-img:mx-auto
+    prose-ul:list-disc prose-ol:list-decimal;
+}

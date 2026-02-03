@@ -1,9 +1,9 @@
 ---
-import HomeLayout from "./HomeLayout.astro";
+import BaseLayout from "./BaseLayout.astro";
 const { title, description } = Astro.props;
 ---
 
-<HomeLayout>
+<BaseLayout>
   <article
     class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-10 md:py-16 lg:py-20"
   >
@@ -22,24 +22,10 @@ const { title, description } = Astro.props;
         )
       }
 
-      <!-- Optional: add date, author, reading time here if available -->
-      <!-- <div class="mt-6 text-sm text-gray-500 flex items-center justify-center md:justify-start gap-6">
-          <time>January 29, 2026</time>
-          <span>·</span>
-          <span>8 min read</span>
-        </div> -->
     </header>
 
-    <div
-      class="prose prose-lg prose-headings:font-serif prose-headings:tracking-tight prose-headings:text-gray-900
-                  prose-p:text-gray-700 prose-p:leading-relaxed
-                  prose-a:text-green-700 prose-a:no-underline hover:prose-a:underline
-                  prose-blockquote:border-l-4 prose-blockquote:border-green-700 prose-blockquote:pl-5 prose-blockquote:italic prose-blockquote:text-gray-600
-                  prose-img:rounded-xl prose-img:shadow-md prose-img:mx-auto
-                  prose-ul:list-disc prose-ol:list-decimal
-                  max-w-none text-black"
-    >
+    <div class="blog-content">
       <slot />
     </div>
   </article>
-</HomeLayout>
+</BaseLayout>
