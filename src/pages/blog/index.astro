@@ -1,7 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 
-const posts = await getCollection("blog");
+const posts = (await getCollection("blog")).sort(
+  (a, b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0)
+);
 const categories = [...new Set(posts.map((p) => p.data.category).filter(Boolean))].sort();
 ---
 
