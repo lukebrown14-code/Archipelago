@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @plugin "daisyui";
+@custom-variant dark (&:where(.dark, .dark *));
 
 .blog-content {
   @apply prose prose-lg max-w-none text-black
@@ -9,5 +10,12 @@
     prose-a:text-green-700 prose-a:no-underline hover:prose-a:underline
     prose-blockquote:border-l-4 prose-blockquote:border-green-700 prose-blockquote:pl-5 prose-blockquote:italic prose-blockquote:text-gray-600
     prose-img:rounded-xl prose-img:shadow-md prose-img:mx-auto
-    prose-ul:list-disc prose-ol:list-decimal;
+    prose-ul:list-disc prose-ol:list-decimal
+    dark:text-gray-300
+    dark:prose-headings:text-gray-100
+    dark:prose-p:text-gray-300
+    dark:prose-a:text-green-400
+    dark:prose-blockquote:border-green-400 dark:prose-blockquote:text-gray-400
+    dark:prose-strong:text-gray-100
+    dark:prose-code:text-gray-200;
 }

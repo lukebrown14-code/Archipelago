@@ -6,13 +6,13 @@ const { title, description, category, date } = Astro.props;
 <BaseLayout>
   <article class="mx-auto max-w-3xl py-10 md:py-14">
     <header class="mb-8 md:mb-12">
-      <h1 class="text-3xl sm:text-4xl text-gray-900 mb-3 leading-tight">
+      <h1 class="text-3xl sm:text-4xl text-gray-900 dark:text-gray-100 mb-3 leading-tight">
         {title}
       </h1>
 
       {
         description && (
-          <p class="text-xl md:text-2xl text-gray-600 font-light max-w-2xl mx-auto md:mx-0">
+          <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-400 font-light max-w-2xl mx-auto md:mx-0">
             {description}
           </p>
         )
@@ -22,12 +22,12 @@ const { title, description, category, date } = Astro.props;
         (date || category) && (
           <div class="mt-4 flex items-center gap-3">
             {date && (
-              <time class="text-sm text-gray-500">
+              <time class="text-sm text-gray-500 dark:text-gray-400">
                 {date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
               </time>
             )}
             {category && (
-              <span class="rounded-full bg-green-700/10 px-3 py-1 text-sm text-green-700">
+              <span class="rounded-full bg-green-700/10 dark:bg-green-400/10 px-3 py-1 text-sm text-green-700 dark:text-green-400">
                 {category}
               </span>
             )}
