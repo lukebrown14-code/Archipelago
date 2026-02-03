@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
-const { title, description } = Astro.props;
+const { title, description, category } = Astro.props;
 ---
 
 <BaseLayout>
@@ -19,6 +19,14 @@ const { title, description } = Astro.props;
           <p class="text-xl md:text-2xl text-gray-600 font-light max-w-2xl mx-auto md:mx-0">
             {description}
           </p>
+        )
+      }
+
+      {
+        category && (
+          <span class="mt-4 inline-block rounded-full bg-green-700/10 px-3 py-1 text-sm text-green-700">
+            {category}
+          </span>
         )
       }
 
