@@ -3,6 +3,11 @@
 @plugin "daisyui";
 @custom-variant dark (&:where(.dark, .dark *));
 
+@theme {
+  --font-sans: "Inter Variable", sans-serif;
+  --font-serif: "Playfair Display Variable", serif;
+}
+
 .blog-content {
   @apply prose prose-lg max-w-none text-black
     prose-headings:font-serif prose-headings:tracking-tight prose-headings:text-gray-900
