@@ -17,7 +17,10 @@
     prose-img:rounded-xl prose-img:shadow-md prose-img:mx-auto
     prose-ul:list-disc prose-ol:list-decimal
     prose-li:text-gray-700 prose-ol:marker:text-gray-700 prose-ul:marker:text-gray-700
+    prose-strong:text-gray-900
+    prose-thead:border-gray-900 prose-th:border-gray-300 prose-td:border-gray-300
     dark:text-gray-300
+    dark:prose-thead:border-gray-600 dark:prose-th:border-gray-600 dark:prose-td:border-gray-600
     dark:prose-li:text-gray-300 dark:prose-ol:marker:text-gray-300 dark:prose-ul:marker:text-gray-300
     dark:prose-headings:text-gray-100
     dark:prose-p:text-gray-300
