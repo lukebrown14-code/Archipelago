@@ -4,28 +4,32 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: "Inter Variable", sans-serif;
-  --font-serif: "Playfair Display Variable", serif;
+  --font-sans: "Space Mono", monospace;
+  --font-serif: "Anton", sans-serif;
+}
+
+:root {
+  --color-bg: #f6eee3;
+  --color-text: #2c2a27;
+  --color-secondary: #8b2500;
+}
+
+.dark {
+  --color-bg: #2c2a27;
+  --color-text: #f6eee3;
+  --color-secondary: #d4722a;
 }
 
 .blog-content {
-  @apply prose prose-lg max-w-none text-black
-    prose-headings:font-serif prose-headings:tracking-tight prose-headings:text-gray-900
-    prose-p:text-gray-700 prose-p:leading-relaxed
-    prose-a:text-green-700 prose-a:no-underline hover:prose-a:underline
-    prose-blockquote:border-l-4 prose-blockquote:border-green-700 prose-blockquote:pl-5 prose-blockquote:italic prose-blockquote:text-gray-600
+  @apply prose prose-lg max-w-none text-[var(--color-text)]
+    prose-headings:font-serif prose-headings:tracking-tight prose-headings:text-[var(--color-text)]
+    prose-p:text-[var(--color-text)] prose-p:leading-relaxed
+    prose-a:text-[var(--color-secondary)] prose-a:no-underline hover:prose-a:underline
+    prose-blockquote:border-l-4 prose-blockquote:border-[var(--color-secondary)] prose-blockquote:pl-5 prose-blockquote:italic prose-blockquote:text-[var(--color-text)]/70
     prose-img:rounded-xl prose-img:shadow-md prose-img:mx-auto
     prose-ul:list-disc prose-ol:list-decimal
-    prose-li:text-gray-700 prose-ol:marker:text-gray-700 prose-ul:marker:text-gray-700
-    prose-strong:text-gray-900
-    prose-thead:border-gray-900 prose-th:border-gray-300 prose-td:border-gray-300
-    dark:text-gray-300
-    dark:prose-thead:border-gray-600 dark:prose-th:border-gray-600 dark:prose-td:border-gray-600
-    dark:prose-li:text-gray-300 dark:prose-ol:marker:text-gray-300 dark:prose-ul:marker:text-gray-300
-    dark:prose-headings:text-gray-100
-    dark:prose-p:text-gray-300
-    dark:prose-a:text-green-400
-    dark:prose-blockquote:border-green-400 dark:prose-blockquote:text-gray-400
-    dark:prose-strong:text-gray-100
-    dark:prose-code:text-gray-200;
+    prose-li:text-[var(--color-text)] prose-ol:marker:text-[var(--color-text)] prose-ul:marker:text-[var(--color-text)]
+    prose-strong:text-[var(--color-text)]
+    prose-thead:border-[var(--color-text)] prose-th:border-[var(--color-text)]/30 prose-td:border-[var(--color-text)]/30
+    prose-code:text-[var(--color-text)];
 }
