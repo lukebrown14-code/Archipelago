@@ -4,6 +4,18 @@ import "@fontsource/space-mono";
 import "@fontsource/space-mono/700.css";
 import "@fontsource/space-mono/400-italic.css";
 import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Archipelago",
+  description = "Opinions & essays on books, philosophy, technology, and culture.",
+} = Astro.props;
+
+const pageTitle = title === "Archipelago" ? title : `${title} — Archipelago`;
 ---
 
 <html lang="en">
@@ -12,7 +24,12 @@ import "../styles/global.css";
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Archipelago Blog</title>
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="alternate" type="application/rss+xml" title="Archipelago" href="/rss.xml" />
     <script is:inline>
       if (localStorage.getItem("theme") === "dark" ||
         (!localStorage.getItem("theme") && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
@@ -44,6 +61,12 @@ import "../styles/global.css";
           >
             [ About ]
           </a>
+          <a
+            href="/rss.xml"
+            class="text-[var(--color-text)] hover:text-[var(--color-secondary)]"
+          >
+            [ RSS ]
+          </a>
           <button
             id="theme-toggle"
             type="button"
@@ -63,6 +86,13 @@ import "../styles/global.css";
     </header>
 
     <slot />
+
+    <footer class="-mx-5 sm:-mx-8 px-5 sm:px-8 border-t-4 border-[var(--color-secondary)] mt-12">
+      <div class="max-w-3xl mx-auto py-6 sm:py-8 text-center font-mono text-xs uppercase tracking-widest text-[var(--color-text)]/40">
+        <p>&copy; 2026 Archipelago</p>
+        <p class="mt-1">Opinions &amp; Essays &middot; Est. 2025</p>
+      </div>
+    </footer>
 
     <script>
       document.getElementById("theme-toggle")?.addEventListener("click", () => {

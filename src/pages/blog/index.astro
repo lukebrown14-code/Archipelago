@@ -5,6 +5,11 @@ const posts = (await getCollection("blog")).sort(
   (a, b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0)
 );
 const categories = [...new Set(posts.map((p) => p.data.category).filter(Boolean))].sort();
+
+function getReadingTime(body?: string) {
+  if (!body) return null;
+  return Math.max(1, Math.round(body.split(/\s+/).length / 230));
+}
 ---
 
 <section class="py-8 md:py-12">
@@ -35,44 +40,64 @@ const categories = [...new Set(posts.map((p) => p.data.category).filter(Boolean)
           ) : (
             <div id="post-list">
               {
-                posts.map((post, i) => (
-                  <>
-                    {i > 0 && (
-                      <div class="border-t border-dashed border-[var(--color-text)]/20"></div>
-                    )}
-                    <a
-                      href={`/blog/${post.slug}`}
-                      class="group block py-6 sm:py-8"
-                      data-category={post.data.category || ""}
-                    >
-                      <h2 class="font-serif text-2xl sm:text-3xl uppercase tracking-wide text-[var(--color-text)] hover:text-[var(--color-secondary)]">
-                        {post.data.title}
-                      </h2>
-
-                      {post.data.description && (
-                        <p class="mt-1 text-sm text-[var(--color-text)]/50">
-                          {post.data.description}
-                        </p>
+                posts.map((post, i) => {
+                  const isLead = i === 0;
+                  const readingTime = getReadingTime(post.body);
+                  return (
+                    <>
+                      {i > 0 && (
+                        <div class:list={[
+                          "border-t",
+                          isLead ? "" : "border-dashed",
+                          i === 1 ? "border-[var(--color-text)]/40 border-t-2" : "border-[var(--color-text)]/20",
+                        ]}></div>
                       )}
+                      <a
+                        href={`/blog/${post.slug}`}
+                        class="group block py-6 sm:py-8"
+                        data-category={post.data.category || ""}
+                      >
+                        <h2 class:list={[
+                          "font-serif uppercase tracking-wide text-[var(--color-text)] hover:text-[var(--color-secondary)]",
+                          isLead ? "text-4xl sm:text-5xl" : "text-2xl sm:text-3xl",
+                        ]}>
+                          {post.data.title}
+                        </h2>
 
-                      {(post.data.date || post.data.category) && (
-                        <div class="mt-2 text-xs font-mono uppercase tracking-widest text-[var(--color-text)]/30">
-                          {post.data.date && (
-                            <time>
-                              {post.data.date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
-                            </time>
-                          )}
-                          {post.data.date && post.data.category && (
-                            <span> · </span>
-                          )}
-                          {post.data.category && (
-                            <span>{post.data.category}</span>
-                          )}
-                        </div>
-                      )}
-                    </a>
-                  </>
-                ))
+                        {post.data.description && (
+                          <p class:list={[
+                            "mt-1 text-[var(--color-text)]/50",
+                            isLead ? "text-base sm:text-lg mt-3" : "text-sm",
+                          ]}>
+                            {post.data.description}
+                          </p>
+                        )}
+
+                        {(post.data.date || post.data.category || readingTime) && (
+                          <div class="mt-2 text-xs font-mono uppercase tracking-widest text-[var(--color-text)]/30">
+                            {post.data.date && (
+                              <time>
+                                {post.data.date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+                              </time>
+                            )}
+                            {post.data.date && post.data.category && (
+                              <span> · </span>
+                            )}
+                            {post.data.category && (
+                              <span>{post.data.category}</span>
+                            )}
+                            {(post.data.date || post.data.category) && readingTime && (
+                              <span> · </span>
+                            )}
+                            {readingTime && (
+                              <span>{readingTime} min read</span>
+                            )}
+                          </div>
+                        )}
+                      </a>
+                    </>
+                  );
+                })
               }
             </div>
           )

@@ -1,40 +1,49 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
-const { title, description, category, date } = Astro.props;
+const { title, description, category, date, body } = Astro.props;
+
+const readingTime = body ? Math.max(1, Math.round(body.split(/\s+/).length / 230)) : null;
 ---
 
-<BaseLayout>
+<BaseLayout title={title} description={description}>
   <article class="mx-auto max-w-3xl py-10 md:py-14">
+    <a
+      href="/"
+      class="inline-block text-xs font-mono uppercase tracking-widest text-[var(--color-text)]/40 hover:text-[var(--color-secondary)] mb-6"
+    >
+      &larr; Back
+    </a>
+
     <header class="mb-8 md:mb-12">
-      <h1 class="text-3xl sm:text-4xl font-serif text-[var(--color-text)] mb-3 leading-tight">
+      <h1 class="text-3xl sm:text-4xl font-serif uppercase tracking-wide text-[var(--color-text)] mb-3 leading-tight">
         {title}
       </h1>
 
       {
         description && (
-          <p class="text-xl md:text-2xl text-[var(--color-text)]/60 font-light max-w-2xl mx-auto md:mx-0">
+          <p class="text-xl md:text-2xl text-[var(--color-text)]/60 font-light max-w-2xl md:mx-0">
             {description}
           </p>
         )
       }
 
       {
-        (date || category) && (
-          <div class="mt-4 flex items-center gap-3">
+        (date || category || readingTime) && (
+          <div class="mt-4 text-xs font-mono uppercase tracking-widest text-[var(--color-text)]/30">
+            {category && <span>{category}</span>}
+            {category && date && <span> &middot; </span>}
             {date && (
-              <time class="text-sm text-[var(--color-text)]/50">
+              <time>
                 {date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
               </time>
             )}
-            {category && (
-              <span class="rounded-full bg-[var(--color-secondary)]/10 px-3 py-1 text-sm text-[var(--color-secondary)]">
-                {category}
-              </span>
-            )}
+            {(category || date) && readingTime && <span> &middot; </span>}
+            {readingTime && <span>{readingTime} min read</span>}
           </div>
         )
       }
 
+      <div class="border-t-2 border-[var(--color-text)]/20 mt-6"></div>
     </header>
 
     <div class="blog-content">
