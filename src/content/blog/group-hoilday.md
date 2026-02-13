@@ -14,7 +14,9 @@ from any single individual by requiring unanimous payment commitment upfront. Th
 once everyone has formally pledged. The commitment mechanism builds accountability — people are far more likely to
 follow through when they’ve already authorized payment, compared to verbal promises that often lead to ghosting.
 
-## App Flow
+## Key Features
+
+**App Flow**
 
 1. **Create** Group → Set rules & constraints
 2. **Propose** Accommodations
@@ -23,65 +25,54 @@ follow through when they’ve already authorized payment, compared to verbal pro
    - Yes → Auto-charge & **Book & Pay** (or provide booking link)
    - No → Time expires → Proposal cancelled / reset
 
-## Key Features
-
 The app flow consists of five key stages: **Create**, **Propose**, **Vote**, **Pledge**, **Book & Pay**. Each stage has
 a distinct purpose and mechanic.
 
-- **Create stage**  
-  Users create a group by inviting friends and family (via shareable link or email). The group can be named and includes
-  a built-in chat.  
-  The group admin sets key constraints: destination region (country or continent), budget range, and travel dates
-  (specific or flexible).  
-  _Nice-to-have_: Ability to deep-link or export the group to an existing WhatsApp group so members can continue
-  chatting there instead of in the app.
+### Create stage
 
-- **Propose stage**  
-  Any member can propose a place (villa, large house, hotel, etc.) that fits the group’s constraints.
+Users create a group by inviting friends and family (via shareable link or email). The group can be named and includes a built-in chat. The group admin sets key constraints: destination region (country or continent), budget range, and travel dates (specific or flexible). _Nice-to-have_: Ability to deep-link or export the group to an existing WhatsApp group so members can continue chatting there instead of in the app.
 
-- **Vote stage**  
-  Everyone votes for their favourite option within a time-bound window (e.g. 48–72 hours). Members can vote or pass.  
-  The option with the most votes advances.  
-  In case of a tie:
-  - First re-vote between tied options
-  - If still tied, the winner is decided by the admin’s pre-set tiebreaker rule (e.g. cheapest, cheapest average
-    flights, shortest flight time, or admin’s choice)
+### Propose stage
 
-- **Pledge stage**  
-  Once a place wins, every member must **pledge** their share by providing payment details and authorizing a hold
-  (pre-authorization) on their card — **no money is taken at this point**.  
-  Members can pledge for themselves or multiple people (e.g. you and your partner).  
-  A countdown timer enforces a decision window (e.g. 48–72 hours).
-  - If **100%** of required spots are pledged → the app automatically charges all participants and proceeds to book the
-    accommodation (via integrated API or by providing the admin with a confirmed booking link).
-  - If the time window expires or someone withdraws their pledge → all pre-authorizations are released and no charges
-    occur.  
-    This is the final opportunity to back out before any money is taken. After full commitment and charging,
-    cancellations follow the group’s refund rules.
+Any member can propose a place (villa, large house, hotel, etc.) that fits the group’s constraints.
 
-- **Admin privileges**  
-  The group admin can:
-  - Cancel the trip before full pledge
-  - Set a minimum commitment threshold (e.g. 80% of spots) — if not reached, the trip returns to the proposal stage
-  - Kick individual members from the group
-  - Pause or extend voting/pledge windows if needed
+### Vote stage
 
-- **Flights**  
-  The app does **not** book flights (too many variables: checked bags, seat selection, different departure cities,
-  etc.).  
-  Instead, it displays real-time aggregated flight options and prices for the chosen departure and return dates (via
-  APIs like Skyscanner or Google Flights).  
-  Once accommodation is locked, individuals book their own flights.  
-  _Future potential_: Suggest optimal dates based on the cheapest average round-trip flight prices.
+Everyone votes for their favourite option within a time-bound window (e.g. 48–72 hours). Members can vote or pass. The option with the most votes advances. In case of a tie:
 
-## Why group booking via the app is often better than everyone booking separately
+- First re-vote between tied options
+- If still tied, the winner is decided by the admin’s pre-set tiebreaker rule (e.g. cheapest, cheapest average flights, shortest flight time, or admin’s choice)
+
+### Pledge stage
+
+Once a place wins, every member must **pledge** their share by providing payment details and authorizing a hold (pre-authorization) on their card — **no money is taken at this point**. Members can pledge for themselves or multiple people (e.g. you and your partner). A countdown timer enforces a decision window (e.g. 48–72 hours).
+
+- If **100%** of required spots are pledged → the app automatically charges all participants and proceeds to book the accommodation (via integrated API or by providing the admin with a confirmed booking link).
+- If the time window expires or someone withdraws their pledge → all pre-authorizations are released and no charges occur. This is the final opportunity to back out before any money is taken. After full commitment and charging, cancellations follow the group’s refund rules.
+
+### Admin privileges
+
+The group admin can:
+
+- Cancel the trip before full pledge
+- Set a minimum commitment threshold (e.g. 80% of spots) — if not reached, the trip returns to the proposal stage
+- Kick individual members from the group
+- Pause or extend voting/pledge windows if needed
+
+### Flights
+
+The app does **not** book flights (too many variables: checked bags, seat selection, different departure cities, etc.). Instead, it displays real-time aggregated flight options and prices for the chosen departure and return dates (via APIs like Skyscanner or Google Flights). Once accommodation is locked, individuals book their own flights. _Future potential_: Suggest optimal dates based on the cheapest average round-trip flight prices.
+
+## Why
+
+Why group booking via the app is often better than everyone booking separately?
 
 While individual bookings can sometimes be simpler or cheaper (especially for small groups or flexible travellers),
 large-group travel frequently creates situations where trying to book separately becomes impractical, significantly more
 expensive, or delivers a much poorer shared experience. The app is purpose-built for the scenarios where staying
 together provides clear advantages.
 
-### Key reasons group booking usually wins for larger groups (8+ people):
+**Key reasons group booking usually wins for larger groups (8+ people):**
 
 - **Fixed pricing and minimum occupancy requirements**  
   Many villas, chalets, large houses, and group accommodations are priced as a single unit (e.g. €4,000–€10,000 per
@@ -137,7 +128,7 @@ emotional benefits of group stays.
    voting/pledge windows and a mostly end-to-end experience (except flights), greatly reducing app-switching and
    decision paralysis.
 
-## Current Competitors
+### Current Competitors
 
 | Feature                                               | GroupTravel | Wanderlog / TripIt / Troupe | SquadTrip / WeTravel       | WhatsApp + Splitwise |
 | ----------------------------------------------------- | ----------- | --------------------------- | -------------------------- | -------------------- |
@@ -148,7 +139,9 @@ emotional benefits of group stays.
 | No one fronts full amount                             | Yes         | No                          | Sometimes                  | No                   |
 | Time-bound voting & commitment windows                | Yes         | Partial                     | Yes                        | No                   |
 
-## Cancellation & Refund Policy (Provisional)
+## Misc
+
+### Cancellation & Refund Policy (Provisional)
 
 - **Before 100% pledge**: Anyone can withdraw their pledge. Pre-authorizations are released automatically — no penalty.
 - **After 100% pledge and charging**:
@@ -162,7 +155,7 @@ emotional benefits of group stays.
 
 This policy will be finalized after selecting the primary booking API and legal review.
 
-## Monetization Strategy
+### Monetization Strategy
 
 - **Initial phase**: No transaction fees during development and early testing.
 - **Planned model**: Small transaction fee (1–2%) on successful bookings.
@@ -171,7 +164,7 @@ This policy will be finalized after selecting the primary booking API and legal 
   - Affiliate commissions from displayed flights and accommodations
   - Premium features (e.g. custom group branding, enhanced reminders)
 
-## Validation Plan
+### Validation Plan
 
 We will measure success using:
 
@@ -181,19 +174,19 @@ We will measure success using:
 - Re-use rate: how many people/groups return to book another holiday
 - User feedback: NPS and “would use again” responses from completed trips
 
-## Legal & Compliance Considerations
+### Legal & Compliance Considerations
 
 Operating a group travel booking app that handles payment commitments, pre-authorizations, and eventual charges involves
 several important legal and regulatory obligations.
 
-### 1. Payment Services Compliance
+**1. Payment Services Compliance**
 
 - **PCI DSS**: No direct storage, processing or transmission of full card details. All card handling outsourced to a
   certified provider (e.g. Stripe).
 - **Strong Customer Authentication (SCA) / PSD2**: Full support for 3D Secure 2.0 in EEA/UK markets.
 - Other: GDPR/UK GDPR/CCPA, AML screening where required, consumer protection laws.
 
-### 2. Merchant of Record (MoR)
+**2. Merchant of Record (MoR)**
 
 **Recommended model**: Stripe Connect with the accommodation provider (villa owner/property manager) as the connected
 merchant of record.
@@ -202,7 +195,7 @@ merchant of record.
 - Reduces direct liability for failed bookings, tax obligations, and chargebacks.
 - Users see charges from the actual provider (more transparent).
 
-### 3. Liability if the Booking Fails After Everyone Has Paid
+**3. Liability if the Booking Fails After Everyone Has Paid**
 
 - The app is **not** the accommodation provider — it acts only as a facilitator.
 - Primary liability rests with the property owner/provider.
@@ -212,7 +205,7 @@ merchant of record.
 - Users are encouraged to purchase travel insurance covering provider default.  
   These limitations must be clearly stated in the Terms of Service and during payment.
 
-### 4. Terms of Service – Binding Commitments
+**4. Terms of Service – Binding Commitments**
 
 - **Pledge / pre-authorization**: Becomes binding once the group reaches 100%. Users agree their card will be charged
   the agreed amount.

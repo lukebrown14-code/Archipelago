@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.15",
+    "@astrojs/sitemap": "^3.7.0",
     "@fontsource/anton": "^5.2.7",
     "@fontsource/space-mono": "^5.2.9",
     "@tailwindcss/vite": "^4.1.18",
