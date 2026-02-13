@@ -8,68 +8,86 @@ const categories = [...new Set(posts.map((p) => p.data.category).filter(Boolean)
 ---
 
 <section class="py-8 md:py-12">
-  <div class="mx-auto max-w-3xl">
-    {categories.length > 0 && (
-      <div class="flex flex-wrap gap-2 mb-6" id="category-filters">
-        <button data-filter="all" class="filter-btn active text-sm px-3 py-1 rounded-full border border-[var(--color-secondary)] bg-[var(--color-secondary)] text-white transition-colors">
-          All
-        </button>
-        {categories.map((cat) => (
-          <button data-filter={cat} class="filter-btn text-sm px-3 py-1 rounded-full border border-[var(--color-text)]/30 text-[var(--color-text)]/60 hover:border-[var(--color-secondary)] hover:text-[var(--color-secondary)] transition-colors">
-            {cat}
-          </button>
-        ))}
-      </div>
-    )}
-
-    {
-      posts.length === 0 ? (
-        <p class="text-[var(--color-text)]/50 py-12">No articles yet.</p>
-      ) : (
-        <div class="divide-y divide-[var(--color-secondary)]/20" id="post-list">
-          {
-            posts.map((post) => (
-              <a
-                href={`/blog/${post.slug}`}
-                class="group block py-5 first:pt-0"
-                data-category={post.data.category || ""}
-              >
-                <h2 class="text-lg font-serif text-[var(--color-text)] group-hover:text-[var(--color-secondary)] transition-colors">
-                  {post.data.title}
-                </h2>
-
-                {post.data.description && (
-                  <p class="mt-1 text-[var(--color-text)]/50 text-sm line-clamp-2">
-                    {post.data.description}
-                  </p>
-                )}
-
-                {(post.data.date || post.data.category) && (
-                  <div class="mt-2 flex items-center gap-3">
-                    {post.data.date && (
-                      <time class="text-xs text-[var(--color-text)]/40">
-                        {post.data.date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
-                      </time>
-                    )}
-                    {post.data.category && (
-                      <span class="text-xs text-[var(--color-secondary)]/60">
-                        {post.data.category}
-                      </span>
-                    )}
-                  </div>
-                )}
-              </a>
-            ))
-          }
+  <div class="mx-auto max-w-5xl">
+    <div class="flex flex-col md:flex-row">
+      {/* Left sidebar — filters */}
+      {categories.length > 0 && (
+        <div class="md:w-48 shrink-0 border-b md:border-b-0 md:border-r border-[var(--color-text)]/30 py-4 md:py-6 md:pr-6" id="category-filters">
+          <div class="text-[10px] uppercase tracking-widest font-mono text-[var(--color-text)]/30 mb-3">Sections</div>
+          <div class="flex flex-wrap md:flex-col gap-x-4 gap-y-1">
+            <button data-filter="all" class="filter-btn active text-xs uppercase tracking-widest font-mono font-bold text-[var(--color-secondary)] text-left">
+              [ ALL ]
+            </button>
+            {categories.map((cat) => (
+              <button data-filter={cat} class="filter-btn text-xs uppercase tracking-widest font-mono text-[var(--color-text)]/40 hover:text-[var(--color-secondary)] text-left">
+                [ {cat} ]
+              </button>
+            ))}
+          </div>
         </div>
-      )
-    }
+      )}
+
+      {/* Right column — articles */}
+      <div class="flex-1 md:pl-6">
+        {
+          posts.length === 0 ? (
+            <p class="text-[var(--color-text)]/50 py-12 font-mono text-sm uppercase tracking-widest">No articles yet.</p>
+          ) : (
+            <div id="post-list">
+              {
+                posts.map((post, i) => (
+                  <>
+                    {i > 0 && (
+                      <div class="border-t border-dashed border-[var(--color-text)]/20"></div>
+                    )}
+                    <a
+                      href={`/blog/${post.slug}`}
+                      class="group block py-6 sm:py-8"
+                      data-category={post.data.category || ""}
+                    >
+                      <h2 class="font-serif text-2xl sm:text-3xl uppercase tracking-wide text-[var(--color-text)] hover:text-[var(--color-secondary)]">
+                        {post.data.title}
+                      </h2>
+
+                      {post.data.description && (
+                        <p class="mt-1 text-sm text-[var(--color-text)]/50">
+                          {post.data.description}
+                        </p>
+                      )}
+
+                      {(post.data.date || post.data.category) && (
+                        <div class="mt-2 text-xs font-mono uppercase tracking-widest text-[var(--color-text)]/30">
+                          {post.data.date && (
+                            <time>
+                              {post.data.date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+                            </time>
+                          )}
+                          {post.data.date && post.data.category && (
+                            <span> · </span>
+                          )}
+                          {post.data.category && (
+                            <span>{post.data.category}</span>
+                          )}
+                        </div>
+                      )}
+                    </a>
+                  </>
+                ))
+              }
+            </div>
+          )
+        }
+      </div>
+    </div>
+
   </div>
 </section>
 
 <script>
   const filters = document.getElementById("category-filters");
-  const posts = document.querySelectorAll<HTMLAnchorElement>("#post-list a[data-category]");
+  const postList = document.getElementById("post-list");
+  const posts = postList?.querySelectorAll<HTMLAnchorElement>("a[data-category]") ?? [];
+  const dividers = postList?.querySelectorAll<HTMLDivElement>(":scope > div") ?? [];
 
   filters?.addEventListener("click", (e) => {
     const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(".filter-btn");
@@ -78,15 +96,26 @@ const categories = [...new Set(posts.map((p) => p.data.category).filter(Boolean)
     const selected = btn.dataset.filter;
 
     filters.querySelectorAll(".filter-btn").forEach((b) => {
-      b.classList.remove("active", "bg-[var(--color-secondary)]", "text-white", "border-[var(--color-secondary)]");
-      b.classList.add("border-[var(--color-text)]/30", "text-[var(--color-text)]/60");
+      b.classList.remove("active", "font-bold", "text-[var(--color-secondary)]");
+      b.classList.add("text-[var(--color-text)]/40");
     });
-    btn.classList.add("active", "bg-[var(--color-secondary)]", "text-white", "border-[var(--color-secondary)]");
-    btn.classList.remove("border-[var(--color-text)]/30", "text-[var(--color-text)]/60");
+    btn.classList.add("active", "font-bold", "text-[var(--color-secondary)]");
+    btn.classList.remove("text-[var(--color-text)]/40");
 
     posts.forEach((post) => {
       const show = selected === "all" || post.dataset.category === selected;
       post.style.display = show ? "" : "none";
+    });
+
+    // Hide dividers next to hidden posts
+    dividers.forEach((div) => {
+      const nextArticle = div.nextElementSibling as HTMLAnchorElement | null;
+      const prevArticle = div.previousElementSibling as HTMLAnchorElement | null;
+      if (nextArticle?.style.display === "none" || prevArticle?.style.display === "none") {
+        div.style.display = "none";
+      } else {
+        div.style.display = "";
+      }
     });
   });
 </script>
