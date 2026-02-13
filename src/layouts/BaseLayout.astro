@@ -22,41 +22,43 @@ import "../styles/global.css";
   </head>
 
   <body
-    class="px-5 sm:px-8 py-8 sm:py-10 bg-[var(--color-bg)] text-[var(--color-text)] min-h-screen font-sans font-normal tracking-tight transition-colors"
+    class="px-5 sm:px-8 pb-8 sm:pb-10 bg-[var(--color-bg)] text-[var(--color-text)] min-h-screen font-sans font-normal tracking-tight transition-colors"
   >
     <header class="-mx-5 sm:-mx-8 px-5 sm:px-8 border-b-4 border-[var(--color-secondary)]">
-      <div class="max-w-3xl mx-auto">
-        <div class="flex justify-between items-baseline pb-6 sm:pb-7">
-          <a
-            href="/"
-            class="text-3xl sm:text-4xl font-serif uppercase tracking-wider text-[var(--color-text)] hover:text-[var(--color-secondary)]"
-          >
-            Archipelago
-          </a>
+      <div class="max-w-3xl mx-auto flex flex-col items-center py-6 sm:py-8">
+        <span class="text-xs uppercase tracking-widest text-[var(--color-text)]/50 font-mono">
+          Opinions &amp; Essays
+        </span>
 
-          <nav class="flex items-center gap-4">
-            <a
-              href="/about"
-              class="text-sm uppercase tracking-widest font-bold text-[var(--color-text)] hover:text-[var(--color-secondary)]"
-            >
-              About
-            </a>
-            <button
-              id="theme-toggle"
-              type="button"
-              class="text-[var(--color-text)] hover:text-[var(--color-secondary)]"
-              aria-label="Toggle dark mode"
-            >
-              <svg id="sun-icon" class="hidden dark:block w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="5" />
-                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-              </svg>
-              <svg id="moon-icon" class="block dark:hidden w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" />
-              </svg>
-            </button>
-          </nav>
-        </div>
+        <a
+          href="/"
+          class="text-5xl sm:text-7xl font-serif uppercase tracking-[0.25em] text-[var(--color-text)] hover:text-[var(--color-secondary)] mt-3 sm:mt-4"
+        >
+          Archipelago
+        </a>
+
+        <nav class="flex items-center gap-5 mt-4 sm:mt-5 text-xs uppercase tracking-widest font-bold font-mono">
+          <a
+            href="/about"
+            class="text-[var(--color-text)] hover:text-[var(--color-secondary)]"
+          >
+            [ About ]
+          </a>
+          <button
+            id="theme-toggle"
+            type="button"
+            class="text-[var(--color-text)] hover:text-[var(--color-secondary)]"
+            aria-label="Toggle dark mode"
+          >
+            <svg id="sun-icon" class="hidden dark:block w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="5" />
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+            </svg>
+            <svg id="moon-icon" class="block dark:hidden w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" />
+            </svg>
+          </button>
+        </nav>
       </div>
     </header>
 
