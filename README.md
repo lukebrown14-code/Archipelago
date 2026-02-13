@@ -1,6 +1,6 @@
 # Archipelago
 
-A personal blog built with [Astro](https://astro.build), [Tailwind CSS](https://tailwindcss.com), and [daisyUI](https://daisyui.com).
+A personal blog built with [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com).
 
 ## Design
 
@@ -54,9 +54,10 @@ The `date` and `category` fields are optional.
 
 ```
 src/
+├── components/      # Reusable UI components (Header, Footer, ArticleList, PostMeta)
 ├── content/blog/    # Markdown blog posts
 ├── layouts/         # BaseLayout, BlogPostLayout
 ├── pages/           # File-based routing (home, about, blog)
-├── stores/          # Nanostores for state management
-└── styles/          # Global CSS (Tailwind + daisyUI)
+├── styles/          # Global CSS (Tailwind)
+└── utils/           # Shared helpers (posts, readingTime, formatDate)
 ```

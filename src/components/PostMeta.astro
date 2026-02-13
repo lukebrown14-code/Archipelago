@@ -1,0 +1,23 @@
+---
+import { formatDate } from "@/utils/formatDate";
+
+interface Props {
+  date?: Date;
+  category?: string;
+  readingTime?: number | null;
+}
+
+const { date, category, readingTime } = Astro.props;
+---
+
+{
+  (date || category || readingTime) && (
+    <div class="mt-2 text-xs font-mono uppercase tracking-widest text-[var(--color-text)]/30">
+      {date && <time>{formatDate(date)}</time>}
+      {date && category && <span> &middot; </span>}
+      {category && <span>{category}</span>}
+      {(date || category) && readingTime && <span> &middot; </span>}
+      {readingTime && <span>{readingTime} min read</span>}
+    </div>
+  )
+}
