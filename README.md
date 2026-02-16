@@ -25,6 +25,13 @@ bun run dev
 
 Open [localhost:4321](http://localhost:4321) to view the site.
 
+## Tech Stack
+
+- [Astro](https://astro.build) — Static site framework
+- [Tailwind CSS v4](https://tailwindcss.com) — Styling
+- [Vitest](https://vitest.dev) — Unit tests
+- [Playwright](https://playwright.dev) — End-to-end tests
+
 ## Commands
 
 | Command             | Description                          |
@@ -32,6 +39,8 @@ Open [localhost:4321](http://localhost:4321) to view the site.
 | `bun run dev`       | Start the development server         |
 | `bun run build`     | Build the production site to `dist/` |
 | `bun run preview`   | Preview the production build locally |
+| `bun run test`      | Run unit tests                       |
+| `bun run test:e2e`  | Run end-to-end tests                 |
 
 ## Adding a Blog Post
 
@@ -54,10 +63,11 @@ The `date` and `category` fields are optional.
 
 ```
 src/
-├── components/      # Reusable UI components (Header, Footer, ArticleList, PostMeta)
+├── components/      # Reusable UI components (Header, Footer, ArticleList, PostMeta, TableOfContents)
 ├── content/blog/    # Markdown blog posts
 ├── layouts/         # BaseLayout, BlogPostLayout
-├── pages/           # File-based routing (home, about, blog)
+├── pages/           # File-based routing (home, about, blog, RSS)
 ├── styles/          # Global CSS (Tailwind)
 └── utils/           # Shared helpers (posts, readingTime, formatDate)
+e2e/                 # Playwright end-to-end tests
 ```
