@@ -13,10 +13,7 @@ interface Props {
   description?: string;
 }
 
-const {
-  title = SITE.title,
-  description = SITE.description,
-} = Astro.props;
+const { title = SITE.title, description = SITE.description } = Astro.props;
 
 const pageTitle = title === SITE.title ? title : `${title} — ${SITE.title}`;
 ---
@@ -24,18 +21,26 @@ const pageTitle = title === SITE.title ? title : `${title} — ${SITE.title}`;
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="description" content={description} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <link rel="alternate" type="application/rss+xml" title="Archipelago" href="/rss.xml" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Archipelago"
+      href="/rss.xml"
+    />
     <script is:inline>
-      if (localStorage.getItem("theme") === "dark" ||
-        (!localStorage.getItem("theme") && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+      if (
+        localStorage.getItem("theme") === "dark" ||
+        (!localStorage.getItem("theme") &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
         document.documentElement.classList.add("dark");
       }
     </script>
