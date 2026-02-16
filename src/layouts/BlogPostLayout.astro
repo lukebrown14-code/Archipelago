@@ -50,18 +50,18 @@ const readingTime = getReadingTime(body);
         <article id="article" class="max-w-3xl flex-1 min-w-0">
           <a
             href="/"
-            class="inline-block text-xs font-mono uppercase tracking-widest text-(--color-text)/4 hover:text-[var(--color-secondary)] mb-6"
+            class="inline-block text-xs font-mono uppercase tracking-widest text-(--color-text)/4 hover:text-(--color-secondary) mb-6"
           >
             &larr; Back
           </a>
 
           <header class="mb-8 md:mb-12">
-            <h1 class="text-3xl sm:text-4xl font-serif uppercase tracking-wide text-[var(--color-text)] mb-3 leading-tight">
+            <h1 class="text-3xl sm:text-4xl font-serif uppercase tracking-wide text-(--color-text) mb-3 leading-tight">
               {title}
             </h1>
 
             {description && (
-              <p class="text-xl md:text-2xl text-[var(--color-text)]/60 font-light max-w-2xl md:mx-0">
+              <p class="text-xl md:text-2xl text-(--color-text)/60 font-light max-w-2xl md:mx-0">
                 {description}
               </p>
             )}
@@ -74,7 +74,7 @@ const readingTime = getReadingTime(body);
               />
             </div>
 
-            <div class="border-t-2 border-[var(--color-text)]/20 mt-6" />
+            <div class="border-t-2 border-(--color-text)/20 mt-6" />
           </header>
 
           <div class="blog-content">
@@ -86,18 +86,18 @@ const readingTime = getReadingTime(body);
       <article id="article" class="mx-auto max-w-3xl py-10 md:py-14">
         <a
           href="/"
-          class="inline-block text-xs font-mono uppercase tracking-widest text-[var(--color-text)]/40 hover:text-[var(--color-secondary)] mb-6"
+          class="inline-block text-xs font-mono uppercase tracking-widest text-(--color-text)/40 hover:text-(--color-secondary) mb-6"
         >
           &larr; Back
         </a>
 
         <header class="mb-8 md:mb-12">
-          <h1 class="text-3xl sm:text-4xl font-serif uppercase tracking-wide text-[var(--color-text)] mb-3 leading-tight">
+          <h1 class="text-3xl sm:text-4xl font-serif uppercase tracking-wide text-(--color-text) mb-3 leading-tight">
             {title}
           </h1>
 
           {description && (
-            <p class="text-xl md:text-2xl text-[var(--color-text)]/60 font-light max-w-2xl md:mx-0">
+            <p class="text-xl md:text-2xl text-(--color-text)/60 font-light max-w-2xl md:mx-0">
               {description}
             </p>
           )}
@@ -110,7 +110,7 @@ const readingTime = getReadingTime(body);
             />
           </div>
 
-          <div class="border-t-2 border-[var(--color-text)]/20 mt-6" />
+          <div class="border-t-2 border-(--color-text)/20 mt-6" />
         </header>
 
         <div class="blog-content">
@@ -122,12 +122,12 @@ const readingTime = getReadingTime(body);
 
   {
     (prevPost || nextPost) && (
-      <nav class="mx-auto max-w-3xl border-t-2 border-[var(--color-text)]/20 py-8 flex justify-between items-start">
+      <nav class="mx-auto max-w-3xl border-t-2 border-(--color-text)/20 py-8 flex justify-between items-start">
         <div>
           {prevPost && (
             <a
               href={`/blog/${prevPost.slug}/`}
-              class="text-xs font-mono uppercase tracking-widest text-[var(--color-text)]/40 hover:text-[var(--color-secondary)]"
+              class="text-xs font-mono uppercase tracking-widest text-(--color-text)/40 hover:text-(--color-secondary)"
             >
               &larr; Older
             </a>
@@ -137,7 +137,7 @@ const readingTime = getReadingTime(body);
           {nextPost && (
             <a
               href={`/blog/${nextPost.slug}/`}
-              class="text-xs font-mono uppercase tracking-widest text-[var(--color-text)]/40 hover:text-[var(--color-secondary)]"
+              class="text-xs font-mono uppercase tracking-widest text-(--color-text)/40 hover:text-(--color-secondary)"
             >
               Newer &rarr;
             </a>

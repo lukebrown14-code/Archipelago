@@ -1,44 +1,67 @@
 ---
+
 ---
 
-<header class="-mx-5 sm:-mx-8 px-5 sm:px-8 border-b-4 border-[var(--color-secondary)]">
+<header
+  class="-mx-5 sm:-mx-8 px-5 sm:px-8 border-b-4 border-(--color-secondary)"
+>
   <div class="max-w-3xl mx-auto flex flex-col items-center py-6 sm:py-8">
-    <span class="text-xs uppercase tracking-widest text-[var(--color-text)]/50 font-mono">
+    <span
+      class="text-xs uppercase tracking-widest text-(--color-text)/50 font-mono"
+    >
       Opinions &amp; Essays
     </span>
 
     <a
       href="/"
-      class="text-4xl sm:text-7xl font-serif uppercase tracking-[0.15em] sm:tracking-[0.25em] text-[var(--color-text)] hover:text-[var(--color-secondary)] mt-3 sm:mt-4"
+      class="text-4xl sm:text-7xl font-serif uppercase tracking-[0.15em] sm:tracking-[0.25em] text-(--color-text) hover:text-(--color-secondary) mt-3 sm:mt-4"
     >
       Archipelago
     </a>
 
-    <nav class="flex items-center gap-5 mt-4 sm:mt-5 text-xs uppercase tracking-widest font-bold font-mono">
+    <nav
+      class="flex items-center gap-5 mt-4 sm:mt-5 text-xs uppercase tracking-widest font-bold font-mono"
+    >
       <a
         href="/about"
-        class="text-[var(--color-text)] hover:text-[var(--color-secondary)]"
+        class="text-(--color-text) hover:text-(--color-secondary)"
       >
         [ About ]
       </a>
       <a
         href="/rss.xml"
-        class="text-[var(--color-text)] hover:text-[var(--color-secondary)]"
+        class="text-(--color-text) hover:text-(--color-secondary)"
       >
         [ RSS ]
       </a>
       <button
         id="theme-toggle"
         type="button"
-        class="text-[var(--color-text)] hover:text-[var(--color-secondary)]"
+        class="text-(--color-text) hover:text-(--color-secondary)"
         aria-label="Toggle dark mode"
       >
-        <svg id="sun-icon" class="hidden dark:block w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="5" />
-          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+        <svg
+          id="sun-icon"
+          class="hidden dark:block w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <circle cx="12" cy="12" r="5"></circle>
+          <path
+            d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
+          ></path>
         </svg>
-        <svg id="moon-icon" class="block dark:hidden w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" />
+        <svg
+          id="moon-icon"
+          class="block dark:hidden w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
         </svg>
       </button>
     </nav>

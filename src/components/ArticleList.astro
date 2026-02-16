@@ -4,107 +4,139 @@ import { getReadingTime } from "@/utils/readingTime";
 import { getSortedPosts } from "@/utils/posts";
 
 const posts = await getSortedPosts();
-const categories = [...new Set(posts.map((p) => p.data.category).filter(Boolean))].sort();
+const categories = [
+  ...new Set(posts.map((p) => p.data.category).filter(Boolean)),
+].sort();
 ---
 
 <section class="py-8 md:py-12">
   <div class="mx-auto max-w-5xl">
     <div class="flex flex-col md:flex-row">
       {/* Left sidebar — filters */}
-      {categories.length > 0 && (
-        <div class="md:w-48 shrink-0 border-b md:border-b-0 md:border-r border-[var(--color-text)]/30 py-4 md:py-6 md:pr-6" id="category-filters">
-          <div class="text-[10px] uppercase tracking-widest font-mono text-[var(--color-text)]/30 mb-3">Sections</div>
-          <div class="flex flex-wrap md:flex-col gap-x-4 gap-y-1">
-            <button data-filter="all" class="filter-btn active text-xs uppercase tracking-widest font-mono font-bold text-[var(--color-secondary)] text-left">
-              [ ALL ]
-            </button>
-            {categories.map((cat) => (
-              <button data-filter={cat} class="filter-btn text-xs uppercase tracking-widest font-mono text-[var(--color-text)]/40 hover:text-[var(--color-secondary)] text-left">
-                [ {cat} ]
+      {
+        categories.length > 0 && (
+          <div
+            class="md:w-48 shrink-0 border-b md:border-b-0 md:border-r border-(--color-text)/30 py-4 md:py-6 md:pr-6"
+            id="category-filters"
+          >
+            <div class="text-[10px] uppercase tracking-widest font-mono text-(--color-text)/30 mb-3">
+              Sections
+            </div>
+            <div class="flex flex-wrap md:flex-col gap-x-4 gap-y-1">
+              <button
+                data-filter="all"
+                class="filter-btn active text-xs uppercase tracking-widest font-mono font-bold text-(--color-secondary) text-left"
+              >
+                [ ALL ]
               </button>
-            ))}
+              {categories.map((cat) => (
+                <button
+                  data-filter={cat}
+                  class="filter-btn text-xs uppercase tracking-widest font-mono text-(--color-text)/40 hover:text-(--color-secondary) text-left"
+                >
+                  [ {cat} ]
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+        )
+      }
 
       {/* Right column — articles */}
       <div class="flex-1 md:pl-6">
         {
           posts.length === 0 ? (
-            <p class="text-[var(--color-text)]/50 py-12 font-mono text-sm uppercase tracking-widest">No articles yet.</p>
+            <p class="text-(--color-text)/50 py-12 font-mono text-sm uppercase tracking-widest">
+              No articles yet.
+            </p>
           ) : (
             <div id="post-list">
-              {
-                posts.map((post, i) => {
-                  const isLead = i === 0;
-                  const readingTime = getReadingTime(post.body);
-                  return (
-                    <>
-                      {i > 0 && (
-                        <div class:list={[
+              {posts.map((post, i) => {
+                const isLead = i === 0;
+                const readingTime = getReadingTime(post.body);
+                return (
+                  <>
+                    {i > 0 && (
+                      <div
+                        class:list={[
                           "border-t",
                           isLead ? "" : "border-dashed",
-                          i === 1 ? "border-[var(--color-text)]/40 border-t-2" : "border-[var(--color-text)]/20",
-                        ]}></div>
-                      )}
-                      <a
-                        href={`/blog/${post.slug}`}
-                        class="group block py-6 sm:py-8"
-                        data-category={post.data.category || ""}
+                          i === 1
+                            ? "border-(--color-text)/40 border-t-2"
+                            : "border-(--color-text)/20",
+                        ]}
+                      />
+                    )}
+                    <a
+                      href={`/blog/${post.slug}`}
+                      class="group block py-6 sm:py-8"
+                      data-category={post.data.category || ""}
+                    >
+                      <h2
+                        class:list={[
+                          "font-serif uppercase tracking-wide text-(--color-text) hover:text-(--color-secondary)",
+                          isLead
+                            ? "text-4xl sm:text-5xl"
+                            : "text-2xl sm:text-3xl",
+                        ]}
                       >
-                        <h2 class:list={[
-                          "font-serif uppercase tracking-wide text-[var(--color-text)] hover:text-[var(--color-secondary)]",
-                          isLead ? "text-4xl sm:text-5xl" : "text-2xl sm:text-3xl",
-                        ]}>
-                          {post.data.title}
-                        </h2>
+                        {post.data.title}
+                      </h2>
 
-                        {post.data.description && (
-                          <p class:list={[
-                            "mt-1 text-[var(--color-text)]/50",
+                      {post.data.description && (
+                        <p
+                          class:list={[
+                            "mt-1 text-(--color-text)/50",
                             isLead ? "text-base sm:text-lg mt-3" : "text-sm",
-                          ]}>
-                            {post.data.description}
-                          </p>
-                        )}
+                          ]}
+                        >
+                          {post.data.description}
+                        </p>
+                      )}
 
-                        <PostMeta
-                          date={post.data.date}
-                          category={post.data.category}
-                          readingTime={readingTime}
-                        />
-                      </a>
-                    </>
-                  );
-                })
-              }
+                      <PostMeta
+                        date={post.data.date}
+                        category={post.data.category}
+                        readingTime={readingTime}
+                      />
+                    </a>
+                  </>
+                );
+              })}
             </div>
           )
         }
       </div>
     </div>
-
   </div>
 </section>
 
 <script>
   const filters = document.getElementById("category-filters");
   const postList = document.getElementById("post-list");
-  const posts = postList?.querySelectorAll<HTMLAnchorElement>("a[data-category]") ?? [];
-  const dividers = postList?.querySelectorAll<HTMLDivElement>(":scope > div") ?? [];
+  const posts =
+    postList?.querySelectorAll<HTMLAnchorElement>("a[data-category]") ?? [];
+  const dividers =
+    postList?.querySelectorAll<HTMLDivElement>(":scope > div") ?? [];
 
   filters?.addEventListener("click", (e) => {
-    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(".filter-btn");
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(
+      ".filter-btn",
+    );
     if (!btn) return;
 
     const selected = btn.dataset.filter;
 
     filters.querySelectorAll(".filter-btn").forEach((b) => {
-      b.classList.remove("active", "font-bold", "text-[var(--color-secondary)]");
-      b.classList.add("text-[var(--color-text)]/40");
+      b.classList.remove(
+        "active",
+        "font-bold",
+        "text-(--color-secondary)",
+      );
+      b.classList.add("text-(--color-text)/40");
     });
-    btn.classList.add("active", "font-bold", "text-[var(--color-secondary)]");
-    btn.classList.remove("text-[var(--color-text)]/40");
+    btn.classList.add("active", "font-bold", "text-(--color-secondary)");
+    btn.classList.remove("text-(--color-text)/40");
 
     posts.forEach((post) => {
       const show = selected === "all" || post.dataset.category === selected;
@@ -114,8 +146,12 @@ const categories = [...new Set(posts.map((p) => p.data.category).filter(Boolean)
     // Hide dividers next to hidden posts
     dividers.forEach((div) => {
       const nextArticle = div.nextElementSibling as HTMLAnchorElement | null;
-      const prevArticle = div.previousElementSibling as HTMLAnchorElement | null;
-      if (nextArticle?.style.display === "none" || prevArticle?.style.display === "none") {
+      const prevArticle =
+        div.previousElementSibling as HTMLAnchorElement | null;
+      if (
+        nextArticle?.style.display === "none" ||
+        prevArticle?.style.display === "none"
+      ) {
         div.style.display = "none";
       } else {
         div.style.display = "";
