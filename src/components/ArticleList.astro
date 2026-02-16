@@ -5,7 +5,12 @@ import { getSortedPosts } from "@/utils/posts";
 
 const posts = await getSortedPosts();
 const categories = [
-  ...new Set(posts.map((p) => p.data.category).filter(Boolean)),
+  ...new Set(
+    posts
+      .filter((post) => !post.data.draft)
+      .map((p) => p.data.category)
+      .filter(Boolean),
+  ),
 ].sort();
 ---
 
@@ -42,7 +47,6 @@ const categories = [
         )
       }
 
-      {/* Right column — articles */}
       <div class="flex-1 md:pl-6">
         {
           posts.length === 0 ? (
@@ -51,58 +55,60 @@ const categories = [
             </p>
           ) : (
             <div id="post-list">
-              {posts.map((post, i) => {
-                const isLead = i === 0;
-                const readingTime = getReadingTime(post.body);
-                return (
-                  <>
-                    {i > 0 && (
-                      <div
-                        class:list={[
-                          "border-t",
-                          isLead ? "" : "border-dashed",
-                          i === 1
-                            ? "border-(--color-text)/40 border-t-2"
-                            : "border-(--color-text)/20",
-                        ]}
-                      />
-                    )}
-                    <a
-                      href={`/blog/${post.slug}`}
-                      class="group block py-6 sm:py-8"
-                      data-category={post.data.category || ""}
-                    >
-                      <h2
-                        class:list={[
-                          "font-serif uppercase tracking-wide text-(--color-text) hover:text-(--color-secondary)",
-                          isLead
-                            ? "text-4xl sm:text-5xl"
-                            : "text-2xl sm:text-3xl",
-                        ]}
-                      >
-                        {post.data.title}
-                      </h2>
-
-                      {post.data.description && (
-                        <p
+              {posts
+                .filter((post) => !post.data.draft)
+                .map((post, i) => {
+                  const isLead = i === 0;
+                  const readingTime = getReadingTime(post.body);
+                  return (
+                    <>
+                      {i > 0 && (
+                        <div
                           class:list={[
-                            "mt-1 text-(--color-text)/50",
-                            isLead ? "text-base sm:text-lg mt-3" : "text-sm",
+                            "border-t",
+                            isLead ? "" : "border-dashed",
+                            i === 1
+                              ? "border-(--color-text)/40 border-t-2"
+                              : "border-(--color-text)/20",
+                          ]}
+                        />
+                      )}
+                      <a
+                        href={`/blog/${post.slug}`}
+                        class="group block py-6 sm:py-8"
+                        data-category={post.data.category || ""}
+                      >
+                        <h2
+                          class:list={[
+                            "font-serif uppercase tracking-wide text-(--color-text) hover:text-(--color-secondary)",
+                            isLead
+                              ? "text-4xl sm:text-5xl"
+                              : "text-2xl sm:text-3xl",
                           ]}
                         >
-                          {post.data.description}
-                        </p>
-                      )}
+                          {post.data.title}
+                        </h2>
 
-                      <PostMeta
-                        date={post.data.date}
-                        category={post.data.category}
-                        readingTime={readingTime}
-                      />
-                    </a>
-                  </>
-                );
-              })}
+                        {post.data.description && (
+                          <p
+                            class:list={[
+                              "mt-1 text-(--color-text)/50",
+                              isLead ? "text-base sm:text-lg mt-3" : "text-sm",
+                            ]}
+                          >
+                            {post.data.description}
+                          </p>
+                        )}
+
+                        <PostMeta
+                          date={post.data.date}
+                          category={post.data.category}
+                          readingTime={readingTime}
+                        />
+                      </a>
+                    </>
+                  );
+                })}
             </div>
           )
         }
@@ -128,11 +134,7 @@ const categories = [
     const selected = btn.dataset.filter;
 
     filters.querySelectorAll(".filter-btn").forEach((b) => {
-      b.classList.remove(
-        "active",
-        "font-bold",
-        "text-(--color-secondary)",
-      );
+      b.classList.remove("active", "font-bold", "text-(--color-secondary)");
       b.classList.add("text-(--color-text)/40");
     });
     btn.classList.add("active", "font-bold", "text-(--color-secondary)");

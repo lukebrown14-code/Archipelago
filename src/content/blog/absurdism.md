@@ -3,6 +3,7 @@ title: "Absurdism"
 description: "Short intro into Abdurdsim philosophy"
 date: 2025-11-20
 category: "Philosophy"
+draft: true
 ---
 
 Absurdism is a philosophy in which life derives no inherit meaning. We are just on this earth for no real reason. The

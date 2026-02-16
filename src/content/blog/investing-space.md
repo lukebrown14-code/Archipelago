@@ -3,6 +3,7 @@ title: "Investing in Space"
 description: "Exploring the potential of investing in the space industry"
 date: 2026-02-04
 category: "Investment"
+draft: true
 ---
 
 The global space economy is projects to grow from approximately $450-630 billion (2023-2025) to $1.5-1.8 trillion by

@@ -3,6 +3,7 @@ title: "A Minimalist Sports Technology Company"
 description: "Technology that just gives you the what you need"
 date: 2025-10-05
 category: "Business Ideas"
+draft: true
 ---
 
 A Minimalist Sports Technology Company All sports technology companies (e.g. Garmin) are moving towards products that
