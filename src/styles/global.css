@@ -36,6 +36,12 @@
     prose-code:text-[var(--color-text)];
 }
 
+.blog-content :where(table) {
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .blog-content > p:first-of-type::first-letter {
   font-family: "Anton", sans-serif;
   float: left;

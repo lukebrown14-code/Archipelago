@@ -77,10 +77,6 @@ const readingTime = getReadingTime(body);
             <div class="border-t-2 border-[var(--color-text)]/20 mt-6" />
           </header>
 
-          <div class="xl:hidden mb-6 -mt-4">
-            <TableOfContents headings={headings} open={false} />
-          </div>
-
           <div class="blog-content">
             <slot />
           </div>
