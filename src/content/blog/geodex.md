@@ -3,7 +3,7 @@ title: "Geodex"
 description:
   "What Does a Country's Health Actually Look Like? I Built a Tool to Find Out"
 date: 2026-02-24
-category: "Project"
+category: "Projects"
 ---
 
 Understanding and observing a country’s demographic or economic health is
